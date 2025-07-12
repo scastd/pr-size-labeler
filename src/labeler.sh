@@ -29,6 +29,7 @@ labeler::label() {
   if [ "$label_to_add" == "$xl_label" ]; then
     log::message "xl label"
     log::message "DEBUG: message_if_xl='$message_if_xl', had_label='$had_label'"
+
     if [ -n "$message_if_xl" ] && [ "$had_label" -eq "1" ]; then
       log::message "Sending message: $message_if_xl"
       github::comment "$message_if_xl"
