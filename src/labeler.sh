@@ -19,7 +19,6 @@ labeler::label() {
   log::message "Ignoring files (if present): $files_to_ignore"
 
   local -r label_to_add=$(labeler::label_for "$total_modifications" "$@")
-  echo "Checking if label $label_to_add is already applied to PR #$pr_number"
   local -r had_label=$(github::has_label "$pr_number" "$label_to_add")
 
   log::message "Labeling pull request with $label_to_add"
@@ -27,9 +26,7 @@ labeler::label() {
   github::add_label_to_pr "$pr_number" "$label_to_add" "$xs_label" "$s_label" "$m_label" "$l_label" "$xl_label"
 
   if [ "$label_to_add" == "$xl_label" ]; then
-    log::message "xl label"
     if [ -n "$message_if_xl" ] && [ -z "$had_label" ]; then
-      log::message "Sending message: $message_if_xl"
       github::comment "$message_if_xl"
     fi
 
