@@ -29,7 +29,7 @@ labeler::label() {
   if [ "$label_to_add" == "$xl_label" ]; then
     log::message "xl label"
     # If message_if_xl is set and the label was not already present, send a message
-    if [ -n "$message_if_xl" ] && [ "$had_label" -eq 1 ]; then
+    if [ -n "$message_if_xl" ] && [ "$had_label" -eq "1" ]; then
       log::message "Sending message: $message_if_xl"
       github::comment "$message_if_xl"
     fi
